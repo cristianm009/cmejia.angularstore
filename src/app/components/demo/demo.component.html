@@ -1,0 +1,91 @@
+<!--string interpolation-->
+<!--
+{{'hola'}}
+{{1+1}}
+-->
+{{title}}
+
+<!--Data binding-->
+<!--need to add  FormsModule to the module-->
+<!--
+<input type="text" [(ngModel)]="title">
+-->
+<!--ngIf-->
+
+<!--
+<div *ngIf="1===1">  new div</div>
+-->
+<!--
+<div *ngIf="title==='cristian'">  new div {{title}}</div>
+-->
+
+<!--ngFor-->
+<!--
+<button (click)="addItem()">Add Item</button>
+-->
+<!--
+<ul>
+  <li *ngIf="items.length===0">Empty list</li>
+  <li *ngFor="let item of items; index as i">
+    {{ item }} {{i}}
+    -->
+<!--<button (click)="deleteItem(i)">Delete</button>-->
+<!--
+  </li>
+</ul>
+-->
+<!--
+<div *ngFor="let product of products; index as indexProduct">
+  {{product.title}}
+  <img [src]="product.image" alt="">
+  {{product.description}}
+  {{product.price}}
+</div>
+-->
+
+
+<!--ngSwitch-->
+<!--
+<div [ngSwitch]="title">
+  <p *ngSwitchCase="'cristian'"> it's Cristian</p>
+  <p *ngSwitchCase="'alveiro'"> it's Alveiro</p>
+  <p *ngSwitchCase="'mejia'"> it's Mejia</p>
+  <p *ngSwitchCase="'obando'"> it's Obando</p>
+  <p *ngSwitchDefault> No match</p>
+</div>
+-->
+<!--components-->
+<!--
+<app-product></app-product>
+-->
+
+<!--input-->
+<!--
+<div *ngFor="let product of products; index as indexProduct">
+  <app-product [product]="product"></app-product>
+</div>
+-->
+
+<!--output-->
+<!--
+<div *ngFor="let product of products; index as indexProduct">
+  <app-product (productClicked)="clickProduct($event)" [product]="product"></app-product>
+</div>
+-->
+
+<!--render the component base on the route-->
+<!--<router-outlet> </router-outlet>-->
+
+<!--use custom pipes-->
+<input type="text" [(ngModel)]="power">
+{{ power | exponential}}
+
+
+
+<div class="product-grid">
+  <app-product *ngFor="let product of products" 
+    (productClicked)="clickProduct($event)"
+    [product]="product">
+  </app-product>
+</div>
+
