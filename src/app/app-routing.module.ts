@@ -1,12 +1,9 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule, PreloadAllModules } from '@angular/router';
 
-import { DemoComponent } from './components/demo/demo.component';
-import { ContactComponent } from './components/contact/contact.component';
-import { ProductsComponent } from './components/products/products.component';
-import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
-import { ProductDetailComponent } from './components/product-detail/product-detail.component';
-import { LayoutComponent } from './components/layout/layout.component';
+import { LayoutComponent } from './layout/layout.component';
+
+import {AdminGuard} from '../app/admin.guard';
 
 const routes: Routes = [
   {
@@ -23,30 +20,38 @@ const routes: Routes = [
       {
         path: 'home',
         // component: HomeComponent
-        loadChildren: () => import('./components/home/home.module').then(m => m.HomeModule)
+        loadChildren: () => import('./home/home.module').then(m => m.HomeModule)
       },
       {
         path: 'contact',
-        component: ContactComponent
+        canActivate: [AdminGuard],//activate routes by guards
+        //component: ContactComponent
+        loadChildren: () => import('./contact/contact.module').then(m => m.ContactModule)
       },
       {
         path: 'products',
-        component: ProductsComponent
-      },
+        canActivate: [AdminGuard],
+        //component: ProductsComponent
+        loadChildren: () => import('./product/product.module').then(m => m.ProductModule)
+      }/*,
       {
         path: 'products/:id',
+        canActivate: [AdminGuard],
         component: ProductDetailComponent
-      }
+      }*/
     ]
   },
 
   {
     path: 'demo',
-    component: DemoComponent
+    canActivate: [AdminGuard],
+    //component: DemoComponent
+    loadChildren: () => import('./demo/demo.module').then(m => m.DemoModule)
   },
   {
     path: '**',
-    component: PageNotFoundComponent
+    //component: PageNotFoundComponent
+    loadChildren: () => import('./page-not-found/page-not-found.module').then(m => m.PageNotFoundModule)
   }
 ];
 
