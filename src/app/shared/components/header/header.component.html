@@ -1,13 +1,15 @@
-<nav>
-    <!--Refresh the page-->
-    <!--
-    <a href="/products">Products</a>
-    <a href="/contact">Contact</a>
--->
-    <br>
-
-    <!--Doesn't Refresh the page, Angular Feature for single page application-->
-    <a routerLink="/home" routerLinkActive="active">Home</a>
-    <a routerLink="/products" routerLinkActive="active">Products</a>
-    <a routerLink="/contact" routerLinkActive="active">Contact</a>
-</nav>
+<!--toolbar-->
+<mat-toolbar color="primary">
+    <mat-toolbar-row>
+        <div class="row between-xs middle-xs header-row">
+        <nav>
+            <a mat-button routerLink="/home" routerLinkActive="active">Home</a>
+            <a mat-button routerLink="/products" routerLinkActive="active">Products</a>
+            <a mat-button routerLink="/contact" routerLinkActive="active">Contact</a>
+        </nav>
+        <a mat-raised-button matBadge="4" matBadgeColor="warn" matBadgeOverlap="false">
+            <mat-icon>shopping_cart</mat-icon>
+        </a>
+    </div>
+    </mat-toolbar-row>
+</mat-toolbar>

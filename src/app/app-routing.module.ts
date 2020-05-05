@@ -3,7 +3,7 @@ import { Routes, RouterModule, PreloadAllModules } from '@angular/router';
 
 import { LayoutComponent } from './layout/layout.component';
 
-import {AdminGuard} from '../app/admin.guard';
+import { AdminGuard } from '../app/admin.guard';
 
 const routes: Routes = [
   {
@@ -47,9 +47,13 @@ const routes: Routes = [
     canActivate: [AdminGuard],
     //component: DemoComponent
     loadChildren: () => import('./demo/demo.module').then(m => m.DemoModule)
+  },  
+  {
+    path: 'admin',
+    loadChildren: () => import('./admin/admin.module').then(m => m.AdminModule)
   },
   {
-    path: '**',
+    path: '**',//must be the last one
     //component: PageNotFoundComponent
     loadChildren: () => import('./page-not-found/page-not-found.module').then(m => m.PageNotFoundModule)
   }
