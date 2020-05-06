@@ -28,9 +28,47 @@ export class ProductDetailComponent implements OnInit {
       //  console.log(params);
       const id = params.id;
       //console.log(id);
-      this.product = this.productsService.getProduct(id);
+      this.fetchProduct(id);
       //console.log(this.product);
     });
   }
 
+  fetchProduct(id: string) {
+    this.productsService.getProduct(id)
+      .subscribe(product => {
+        this.product = product;
+      });
+  }
+
+  createProduct() {
+    const newProduct: Product = {
+      description: 'Product',
+      id: '11111',
+      image: 'assets/images/stickers2.png',
+      price: 2000,
+      title: 'New Product'
+    };
+    this.productsService.createProduct(newProduct)
+      .subscribe(product => {
+        console.log(product);
+      });
+  }
+
+  updateProduct() {
+    const editedProduct: Partial<Product> = {
+      description: 'Product edit',
+      title: 'New Product edt'
+    };
+    this.productsService.updateProduct('1', editedProduct)
+      .subscribe(product => {
+        console.log(product);
+      });
+  }
+
+  deleteProduct() {
+    this.productsService.deleteProduct('11111')
+      .subscribe(rta => {
+        console.log(rta);
+      });
+  }
 }
