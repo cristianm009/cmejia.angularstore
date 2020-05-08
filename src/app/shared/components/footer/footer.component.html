@@ -1,1 +1,14 @@
-<p></p>
+<div>
+    <h3>Contact</h3>
+    <mat-form-field>
+        <input matInput placeholder="Write your email" [formControl]="emailField" type="email">
+    </mat-form-field>
+    
+    <button mat-raised-button [disabled]="emailField.invalid" (click)="sendEmail()"> Send </button>
+    <p *ngIf="emailField.invalid">Field no valid</p>
+    <!--
+    <input [formControl]="emailField" type="text">
+    <button *ngIf="emailField.valid" (click)="sendEmail()"> Send </button>
+    <p *ngIf="emailField.invalid">Field no valid</p>
+    -->
+</div>
